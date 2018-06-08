@@ -1,0 +1,154 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass report
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Objectif :
+\end_layout
+
+\begin_layout Standard
+1) Programmation en Matlab pour traiter des données de comportement chez
+ l’Homme 
+\end_layout
+
+\begin_layout Standard
+2) Programmation Python pour créer une interface homme-machine pour analyser
+ des données biomédicales pour des chercheurs et des médecins
+\end_layout
+
+\begin_layout Standard
+Pour accomplir mon objectif 2) j’ai installé Python et commencé à rédiger
+ mes programmes sur Sublime Text.
+ Pour réaliser mon interface, j’ai séparé chaque éléments majeurs de mon
+ interface dans différents programmes :
+\end_layout
+
+\begin_layout Itemize
+Le squelette de l’interface et le menu (Capture d’écran 1 & 2): Le défilement
+ du menu ne se voit pas, mais il est composé de (File → Ouvrir / Menu →
+ Quitter)
+\end_layout
+
+\begin_layout Itemize
+La table statistique et le graphique 3D (Capture d’écran 3 & 4)
+\end_layout
+
+\begin_layout Itemize
+Le Graphique 2D (Capture d’écran 5)
+\end_layout
+
+\begin_layout Itemize
+Et enfin j’ai essayé de rassembler tout ce que j’avais déjà fais sous un
+ seul programmes (Capture d’écran 7.1)
+\end_layout
+
+\begin_layout Standard
+Et voici les problèmes principaux que je rencontre :
+\end_layout
+
+\begin_layout Enumerate
+Je souhaiterais pouvoir ouvrir un fichier .text à partir du menu (file →
+ Ouvrir) et pouvoir obtenir le même résultat que celui que j'obtiens actuellemen
+t pour mes graphiques sans inclure le nom du fichier directement dans le
+ code (ce que je fais actuellement pour obtenir ces résultats).
+\end_layout
+
+\begin_layout Enumerate
+Dans le "LabelFrame", j'ai "Angle" qui est un bouton.
+ Je souhaite à partir de ce bouton, calculer l'angle à partir des positions
+ de x, y et z qui s'afficheront juste au-dessus.
+ J'ai d'ailleurs du changer ce bouton en simple "Label" lorsque j’ai essayé
+ de regrouper mes programmes, car il me donnait une erreur que je ne parvenais
+ pas à comprendre.
+ Je dois donc d'abord pouvoir cliquer sur le graphique et obtenir les positions
+ de x,y (et z, si c'est un graphique 3D) et que ces positions soit ensuite
+ placées dans les espaces prévues sur le 
+\begin_inset Quotes eld
+\end_inset
+
+LabelFrame
+\begin_inset Quotes erd
+\end_inset
+
+ afin d'ensuite pouvoir faire le calcul.
+\end_layout
+
+\begin_layout Enumerate
+Enfin, je souhaite tout mettre sous un même fichier.
+ Cependant la partie du "LabelFrame" ne s'affiche pas, une fois l'appli
+ lancée, lorsque je rassemble tout dans une seule classe.
+ Ça ne m’affiche aucune erreur, je ne parviens donc pas à en comprendre
+ la cause.
+\end_layout
+
+\end_body
+\end_document
