@@ -6,15 +6,11 @@ class MainWindow(tkinter.Tk):
 
     def __init__(self):
         tkinter.Tk.__init__(self)
-        self.menubar=Menu(self)
-        self.menu1=Menu(self.menubar, tearoff=0)
-        self.menu1.add_command(label="Open")
-        self.menubar.add_cascade(label="File", menu=self.menu1)
-        self.menu2=Menu(self.menubar, tearoff=0)
-        self.menu2.add_command(label="Quit")
-        self.menubar.add_cascade(label="Menu", menu=self.menu2)
+        self.menubar = Menu(self)
+        self.menu = Menu(self.menubar, tearoff=0)
+        self.menu.add_command(label="Quit")
+        self.menubar.add_cascade(label="File", menu=self.menu)
         self.config(menu=self.menubar)
-
 
 
 if __name__ == '__main__':
