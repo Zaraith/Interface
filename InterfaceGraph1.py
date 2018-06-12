@@ -1,6 +1,5 @@
 """ Importation des modules utilisés """
 import tkinter
-from tkinter import *
 
 """ Création d'une classe pour y mettre l'appli"""
 
