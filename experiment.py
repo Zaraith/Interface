@@ -1,7 +1,4 @@
-class Experiment(self):
-   
-   def load_data():
-   		print('filename')
-   	
+class Experiment:
 
-
+    def load_data(self, filename):
+        print(filename)
