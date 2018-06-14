@@ -22,7 +22,7 @@ class MainWindow(Tk):
             self.quit()
 
     def __do_fileopen(self):
-        file = askopenfile(title='Select file', filetypes=[('Text files', '.txt')])
+        file = askopenfile(title='Select File', filetypes=[('Text files', '.txt')])
         self.__experiment.load_data(file.name)
 
 

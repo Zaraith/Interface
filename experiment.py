@@ -1,4 +1,6 @@
 class Experiment:
 
     def load_data(self, filename):
-        print(filename)
+        file = open('test.txt', 'r')
+        print (file.read())
+
