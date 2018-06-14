@@ -7,6 +7,7 @@ class MainWindow(Tk):
 
     def __init__(self):
         Tk.__init__(self)
+        self.__experiment = 
         self.menubar = Menu(self)
         self.filemenu = Menu(self.menubar, tearoff=0)
         self.filemenu.add_command(label='Open', command=self.__do_fileopen)
