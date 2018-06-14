@@ -1,5 +1,5 @@
 from tkinter import Tk, Menu
-from tkinter.filedialog import askopenfile
+from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import askyesno
 
 import experiment
@@ -22,8 +22,8 @@ class MainWindow(Tk):
             self.quit()
 
     def __do_fileopen(self):
-        file = askopenfile(title='Select File', filetypes=[('Text files', '.txt')])
-        self.__experiment.load_data(file.name)
+        filename = askopenfilename(title='Select File', filetypes=[('Text files', '.txt')])
+        self.__experiment.load_data(filename)
 
 
 if __name__ == '__main__':
