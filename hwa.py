@@ -20,7 +20,6 @@ class MainWindow(Tk):
     def __create_menu(self):
         menubar = Menu(self)
         filemenu = Menu(menubar, tearoff=0)
-        filemenu.add_command(label='Open', command=self.__do_fileopen)
         filemenu.add_command(label='Quit', command=self.__do_filequit)
         menubar.add_cascade(label='File', menu=filemenu)
         self.config(menu=menubar)
@@ -28,7 +27,7 @@ class MainWindow(Tk):
     def __create_widget(self):
         label_frame = LabelFrame(self, text="X Curve", padx=30, pady=30)
         label_frame.place(x=15, y=15)
-        plot_time_button = Button(label_frame, text="Plot Time Domain")
+        plot_time_button = Button(label_frame, text="Plot Time Domain", command=self.__do_fileopen)
         plot_time_button.grid(column=0, row=1)
         plot_frequency_button = Button(label_frame, text="Plot Frequency Domain")
         plot_frequency_button.grid(column=0, row=0)
