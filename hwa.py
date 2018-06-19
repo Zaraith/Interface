@@ -1,4 +1,4 @@
-from tkinter import Tk, Menu
+from tkinter import Tk, Menu, Button, LabelFrame
 from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import askyesno
 import experiment
@@ -20,6 +20,14 @@ class MainWindow(Tk):
         self.filemenu.add_command(label='Quit', command=self.__do_filequit)
         self.menubar.add_cascade(label='File', menu=self.filemenu)
         self.config(menu=self.menubar)
+
+        self.l = LabelFrame(self, text="X Curve", padx=30, pady=30)
+        self.l.place(x=15,y=15)
+        Plot1 = Button(self.l, text="Plot Frequency Domain")
+        Plot1.grid(column=0, row=0)
+        Plot2 = Button(self.l, text="Plot Time Domain")
+        Plot2.grid(column=0, row=1)
+        self.mainloop()
 
     def __do_filequit(self):
         if askyesno('Quit', 'Are you sure to quit ?'):
