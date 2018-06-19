@@ -28,10 +28,10 @@ class MainWindow(Tk):
     def __create_widget(self):
         label_frame = LabelFrame(self, text="X Curve", padx=30, pady=30)
         label_frame.place(x=15, y=15)
-        plot_time_button = Button(label_frame, text="Plot Time Domain", command=self.__opengraphic)
-        plot_time_button.grid(column=0, row=1)
+        plot_time_button = Button(label_frame, text="Plot Time Domain", command=self.__plot_time)
+        plot_time_button.grid(column=0, row=0)
         plot_frequency_button = Button(label_frame, text="Plot Frequency Domain")
-        plot_frequency_button.grid(column=0, row=0)
+        plot_frequency_button.grid(column=0, row=1)
 
     def __do_filequit(self):
         if askyesno('Quit', 'Are you sure to quit ?'):
@@ -42,7 +42,7 @@ class MainWindow(Tk):
                                    filetypes=[('Text files', '.txt')])
         self.__experiment.load_data(filename)
 
-    def __opengraphic(self):
+    def __plot_time(self):
         plt.plot(self.__experiment.x()[2:-1])
         plt.show()
 
