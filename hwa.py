@@ -14,20 +14,24 @@ class MainWindow(Tk):
     def __init__(self):
         Tk.__init__(self)
         self.__experiment = experiment.Experiment()
-        self.menubar = Menu(self)
-        self.filemenu = Menu(self.menubar, tearoff=0)
-        self.filemenu.add_command(label='Open', command=self.__do_fileopen)
-        self.filemenu.add_command(label='Quit', command=self.__do_filequit)
-        self.menubar.add_cascade(label='File', menu=self.filemenu)
-        self.config(menu=self.menubar)
+        self.__create_menu()
+        self.__create_widget()
 
-        self.l = LabelFrame(self, text="X Curve", padx=30, pady=30)
-        self.l.place(x=15,y=15)
-        Plot1 = Button(self.l, text="Plot Frequency Domain")
-        Plot1.grid(column=0, row=0)
-        Plot2 = Button(self.l, text="Plot Time Domain")
-        Plot2.grid(column=0, row=1)
-        self.mainloop()
+    def __create_menu(self):
+        menubar = Menu(self)
+        filemenu = Menu(menubar, tearoff=0)
+        filemenu.add_command(label='Open', command=self.__do_fileopen)
+        filemenu.add_command(label='Quit', command=self.__do_filequit)
+        menubar.add_cascade(label='File', menu=filemenu)
+        self.config(menu=menubar)
+
+    def __create_widget(self):
+        label_frame = LabelFrame(self, text="X Curve", padx=30, pady=30)
+        label_frame.place(x=15, y=15)
+        plot_time_button = Button(label_frame, text="Plot Time Domain")
+        plot_time_button.grid(column=0, row=1)
+        plot_frequency_button = Button(label_frame, text="Plot Frequency Domain")
+        plot_frequency_button.grid(column=0, row=0)
 
     def __do_filequit(self):
         if askyesno('Quit', 'Are you sure to quit ?'):
@@ -44,5 +48,5 @@ class MainWindow(Tk):
 if __name__ == '__main__':
     app = MainWindow()
     app.title('Noise Analysis')
-    app.geometry('500x400+350+400')
+    app.geometry('800x400+350+400')
     app.mainloop()
