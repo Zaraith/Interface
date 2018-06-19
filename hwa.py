@@ -43,6 +43,6 @@ class MainWindow(Tk):
 
 if __name__ == '__main__':
     app = MainWindow()
-    app.title('Human Walk Analysis')
+    app.title('Noise Analysis')
     app.geometry('500x400+350+400')
     app.mainloop()
