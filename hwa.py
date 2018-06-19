@@ -1,4 +1,4 @@
-from tkinter import Tk, Menu, Button, LabelFrame
+from tkinter import Tk, Menu, Button, LabelFrame,Label, Entry
 from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import askyesno
 import experiment
@@ -32,6 +32,11 @@ class MainWindow(Tk):
         plot_time_button.grid(column=0, row=0)
         plot_frequency_button = Button(label_frame, text="Plot Frequency Domain")
         plot_frequency_button.grid(column=0, row=1)
+        truncate_button = Button(label_frame, text="Truncate", padx=5,pady=5)
+        truncate_button.grid(column=0, row=2)
+        Entree = Entry(label_frame, background='white')
+        Entree.bind()
+        Entree.grid(column=1, row=2)
 
     def __do_filequit(self):
         if askyesno('Quit', 'Are you sure to quit ?'):
@@ -50,5 +55,5 @@ class MainWindow(Tk):
 if __name__ == '__main__':
     app = MainWindow()
     app.title('Noise Analysis')
-    app.geometry('800x400+350+400')
+    app.geometry('800x400+350+150')
     app.mainloop()
