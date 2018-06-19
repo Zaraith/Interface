@@ -1,8 +1,12 @@
 from tkinter import Tk, Menu
 from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import askyesno
-
 import experiment
+
+import matplotlib
+
+matplotlib.use("TkAgg")
+import matplotlib.pyplot as plt
 
 
 class MainWindow(Tk):
@@ -22,8 +26,11 @@ class MainWindow(Tk):
             self.quit()
 
     def __do_fileopen(self):
-        filename = askopenfilename(title='Select File', filetypes=[('Text files', '.txt')])
+        filename = askopenfilename(title='Select File',
+                                   filetypes=[('Text files', '.txt')])
         self.__experiment.load_data(filename)
+        plt.plot(self.__experiment.x()[2:-1])
+        plt.show()
 
 
 if __name__ == '__main__':
