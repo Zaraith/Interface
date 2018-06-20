@@ -1,9 +1,10 @@
-from tkinter import Tk, Menu, Button, LabelFrame,Label, Entry
-from tkinter.filedialog import askopenfilename
+from tkinter import Tk, Menu, Button, LabelFrame, Entry
+from tkinter.filedialog import askopenfilename, sys
 from tkinter.messagebox import askyesno
-import experiment
 
 import matplotlib
+
+import experiment
 
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
@@ -26,21 +27,19 @@ class MainWindow(Tk):
         self.config(menu=menubar)
 
     def __create_widget(self):
-        label_frame = LabelFrame(self, text="X Curve", padx=30, pady=30)
+        label_frame = LabelFrame(self, text='X Curve', padx=30, pady=30)
         label_frame.place(x=15, y=15)
-        plot_time_button = Button(label_frame, text="Plot Time Domain", command=self.__plot_time)
+        plot_time_button = Button(label_frame, text='Plot Time Domain', command=self.__plot_time)
         plot_time_button.grid(column=0, row=0)
         plot_frequency_button = Button(label_frame, text="Plot Frequency Domain")
         plot_frequency_button.grid(column=0, row=1)
-        truncate_button = Button(label_frame, text="Truncate", padx=5,pady=5, command=self.__plot_time)
-        truncate_button.grid(column=0, row=2)
         self.__truncate_edit = Entry(label_frame, background='white')
         self.__truncate_edit.bind()
         self.__truncate_edit.grid(column=1, row=2)
 
     def __do_filequit(self):
         if askyesno('Quit', 'Are you sure to quit ?'):
-            self.quit()
+            sys.exit()
 
     def __do_fileopen(self):
         filename = askopenfilename(title='Select File',
