@@ -32,11 +32,11 @@ class MainWindow(Tk):
         plot_time_button.grid(column=0, row=0)
         plot_frequency_button = Button(label_frame, text="Plot Frequency Domain")
         plot_frequency_button.grid(column=0, row=1)
-        truncate_button = Button(label_frame, text="Truncate", padx=5,pady=5)
+        truncate_button = Button(label_frame, text="Truncate", padx=5,pady=5, command=self.__plot_time)
         truncate_button.grid(column=0, row=2)
-        Entree = Entry(label_frame, background='white')
-        Entree.bind()
-        Entree.grid(column=1, row=2)
+        self.__truncate_edit = Entry(label_frame, background='white')
+        self.__truncate_edit.bind()
+        self.__truncate_edit.grid(column=1, row=2)
 
     def __do_filequit(self):
         if askyesno('Quit', 'Are you sure to quit ?'):
@@ -48,7 +48,9 @@ class MainWindow(Tk):
         self.__experiment.load_data(filename)
 
     def __plot_time(self):
-        plt.plot(self.__experiment.x()[2:-1])
+        print(self.__truncate_edit.get())
+        start = self.__truncate_edit.get()
+        plt.plot(self.__experiment.x()[int(start):-1])
         plt.show()
 
 
