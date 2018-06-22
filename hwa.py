@@ -1,13 +1,9 @@
-from tkinter import Tk, Menu, Button, LabelFrame, Entry, Label, Text, WORD
+from tkinter import Tk, Menu, Button, LabelFrame, Entry, Label
 from tkinter.filedialog import askopenfilename, sys
-from tkinter.messagebox import askyesno, showinfo, showerror
-
-import matplotlib
+from tkinter.messagebox import askyesno, showerror
 
 import experiment
-
-matplotlib.use("TkAgg")
-import matplotlib.pyplot as plt
+import numbers
 
 
 class MainWindow(Tk):
@@ -16,7 +12,7 @@ class MainWindow(Tk):
         Tk.__init__(self)
         self.__experiment = experiment.Experiment()
         self.__create_menu()
-        self.__create_widget()
+        self.__create_widgets()
 
     def __create_menu(self):
         menubar = Menu(self)
@@ -26,19 +22,19 @@ class MainWindow(Tk):
         menubar.add_cascade(label='File', menu=filemenu)
         self.config(menu=menubar)
 
-    def __create_widget(self):
+    def __create_widgets(self):
         label_frame = LabelFrame(self, text='X Curve', padx=30, pady=30)
         label_frame.place(x=15, y=15)
-        label = Label(label_frame, text="Enter a number to truncate. If you don't want to truncate, enter 0.")
+        label = Label(label_frame, text='Enter a number to truncate beginning of signal')
         label.grid(column=0, row=0)
         self.__truncate_edit = Entry(label_frame, background='white')
+        self.__truncate_edit.insert(0, '0')
         self.__truncate_edit.bind()
         self.__truncate_edit.grid(column=0, row=1)
         plot_time_button = Button(label_frame, text='Plot Time Domain', command=self.__plot_time)
         plot_time_button.grid(column=0, row=3)
-        plot_frequency_button = Button(label_frame, text="Plot Frequency Domain")
+        plot_frequency_button = Button(label_frame, text='Plot Frequency Domain')
         plot_frequency_button.grid(column=0, row=4)
-
 
     def __do_filequit(self):
         if askyesno('Quit', 'Are you sure to quit ?'):
@@ -51,18 +47,22 @@ class MainWindow(Tk):
 
     def __plot_time(self):
         start_string = self.__truncate_edit.get()
-        print(start_string)
-        try:
-            start = int(start_string)           
-        except ValueError as e:
-            showerror('Error', 'Enter a correct number to truncate')
-            return
-        if start <=0:
-            showerror('Error', 'Enter a correct number to truncate')
+        start = MainWindow.__validate_positive_number(start_string)
+        if isinstance(start, numbers.Integral):
+            self.__experiment.plot_x(start)
         else:
-            plt.plot(self.__experiment.x()[start:-1])
-            plt.show()
-  
+            showerror('Error', 'Enter a correct number to truncate')
+
+    @staticmethod
+    def __validate_positive_number(s):
+        try:
+            start = int(s)
+        except ValueError as e:
+            return False
+        if start < 0:
+            return False
+        return start
+
 
 if __name__ == '__main__':
     app = MainWindow()

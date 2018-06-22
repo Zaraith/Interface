@@ -1,4 +1,8 @@
 import numpy
+import matplotlib
+
+matplotlib.use("TkAgg")
+import matplotlib.pyplot as plt
 
 
 class Experiment:
@@ -19,3 +23,7 @@ class Experiment:
 
     def z(self):
         return self.__z
+
+    def plot_x(self, start):
+        plt.plot(self.__x[start:-1])
+        plt.show()
