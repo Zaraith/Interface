@@ -1,6 +1,6 @@
-from tkinter import Tk, Menu, Button, LabelFrame, Entry
+from tkinter import Tk, Menu, Button, LabelFrame, Entry, Label, Text, WORD
 from tkinter.filedialog import askopenfilename, sys
-from tkinter.messagebox import askyesno
+from tkinter.messagebox import askyesno, showinfo, showerror
 
 import matplotlib
 
@@ -29,13 +29,16 @@ class MainWindow(Tk):
     def __create_widget(self):
         label_frame = LabelFrame(self, text='X Curve', padx=30, pady=30)
         label_frame.place(x=15, y=15)
-        plot_time_button = Button(label_frame, text='Plot Time Domain', command=self.__plot_time)
-        plot_time_button.grid(column=0, row=0)
-        plot_frequency_button = Button(label_frame, text="Plot Frequency Domain")
-        plot_frequency_button.grid(column=0, row=1)
+        label = Label(label_frame, text="Enter a number to truncate. If you don't want to truncate, enter 0.")
+        label.grid(column=0, row=0)
         self.__truncate_edit = Entry(label_frame, background='white')
         self.__truncate_edit.bind()
-        self.__truncate_edit.grid(column=1, row=2)
+        self.__truncate_edit.grid(column=0, row=1)
+        plot_time_button = Button(label_frame, text='Plot Time Domain', command=self.__plot_time)
+        plot_time_button.grid(column=0, row=3)
+        plot_frequency_button = Button(label_frame, text="Plot Frequency Domain")
+        plot_frequency_button.grid(column=0, row=4)
+
 
     def __do_filequit(self):
         if askyesno('Quit', 'Are you sure to quit ?'):
@@ -47,11 +50,19 @@ class MainWindow(Tk):
         self.__experiment.load_data(filename)
 
     def __plot_time(self):
-        print(self.__truncate_edit.get())
-        start = self.__truncate_edit.get()
-        plt.plot(self.__experiment.x()[int(start):-1])
-        plt.show()
-
+        start_string = self.__truncate_edit.get()
+        print(start_string)
+        try:
+            start = int(start_string)           
+        except ValueError as e:
+            showerror('Error', 'Enter a correct number to truncate')
+            return
+        if start <=0:
+            showerror('Error', 'Enter a correct number to truncate')
+        else:
+            plt.plot(self.__experiment.x()[start:-1])
+            plt.show()
+  
 
 if __name__ == '__main__':
     app = MainWindow()
