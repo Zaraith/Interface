@@ -47,9 +47,8 @@ class MainWindow(Tk):
 
     def __plot_time(self):
         start_string = self.__truncate_edit.get()
-        start = MainWindow.__validate_positive_number(start_string)
-        if isinstance(start, numbers.Integral):
-            self.__experiment.plot_x(start)
+        if MainWindow.__validate_positive_number(start_string):
+            self.__experiment.plot_x(int(start_string))
         else:
             showerror('Error', 'Enter a correct number to truncate')
 
@@ -61,7 +60,7 @@ class MainWindow(Tk):
             return False
         if start < 0:
             return False
-        return start
+        return True
 
 
 if __name__ == '__main__':
