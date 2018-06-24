@@ -3,7 +3,6 @@ from tkinter.filedialog import askopenfilename, sys
 from tkinter.messagebox import askyesno, showerror
 
 import experiment
-import numbers
 
 
 class MainWindow(Tk):
@@ -31,9 +30,9 @@ class MainWindow(Tk):
         self.__truncate_edit.insert(0, '0')
         self.__truncate_edit.bind()
         self.__truncate_edit.grid(column=0, row=1)
-        plot_time_button = Button(label_frame, text='Plot Time Domain', command=self.__plot_time)
+        plot_time_button = Button(label_frame, text='Plot Time Domain', command=self.__plot_time_domain)
         plot_time_button.grid(column=0, row=3)
-        plot_frequency_button = Button(label_frame, text='Plot Frequency Domain')
+        plot_frequency_button = Button(label_frame, text='Plot Frequency Domain', command=self.__plot_frequency_domain)
         plot_frequency_button.grid(column=0, row=4)
 
     def __do_filequit(self):
@@ -45,12 +44,15 @@ class MainWindow(Tk):
                                    filetypes=[('Text files', '.txt')])
         self.__experiment.load_data(filename)
 
-    def __plot_time(self):
+    def __plot_time_domain(self):
         start_string = self.__truncate_edit.get()
         if MainWindow.__validate_positive_number(start_string):
             self.__experiment.plot_x(int(start_string))
         else:
             showerror('Error', 'Enter a correct number to truncate')
+
+    def __plot_frequency_domain(self):
+        self.__experiment.plot_x_f()
 
     @staticmethod
     def __validate_positive_number(s):

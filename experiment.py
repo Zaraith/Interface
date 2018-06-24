@@ -25,5 +25,13 @@ class Experiment:
         return self.__z
 
     def plot_x(self, start):
-        plt.plot(self.__x[start:-1])
+        x = self.__x[start:-1]
+        plt.plot(x)
+        plt.show()
+
+    def plot_x_f(self):
+        x_f = numpy.fft.fft(self.__x - numpy.mean(self.__x))
+        half = int(len(x_f) / 2)
+        plt.plot(numpy.abs(x_f[1:half]))
+        # plt.plot(numpy.abs(x_f))
         plt.show()
