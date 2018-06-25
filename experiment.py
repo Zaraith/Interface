@@ -32,8 +32,6 @@ class Experiment:
     def plot_x_f(self):
         x_f = numpy.fft.fft(self.__x - numpy.mean(self.__x))
         half = int(len(x_f) / 2)
-        plt.plot(numpy.abs(x_f[1:half]))
-        # plt.plot(numpy.abs(x_f))
 
         plt.subplot(2, 2, 1)
         plt.plot(numpy.abs(x_f[1:half]))
@@ -41,18 +39,19 @@ class Experiment:
         plt.grid(True)
 
         plt.subplot(2, 2, 2)
-        plt.plot(numpy.abs(x_f[1:half]))
+        plt.plot(numpy.angle(x_f[1:half]))
         plt.title('Phase')
         plt.grid(True)
 
         plt.subplot(2, 2, 3)
-        plt.plot(numpy.abs(x_f[1:half]))
+        plt.plot(numpy.real(x_f[1:half]))
         plt.title('Real')
         plt.grid(True)
 
         plt.subplot(2, 2, 4)
-        plt.plot(numpy.abs(x_f[1:half]))
+        plt.plot(numpy.imag(x_f[1:half]))
         plt.title('Imaginary')
         plt.grid(True)
 
+        plt.tight_layout()
         plt.show()
