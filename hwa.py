@@ -1,4 +1,4 @@
-from tkinter import Tk, Menu, Button, LabelFrame, Entry, Label, DISABLED, NORMAL, ACTIVE
+from tkinter import Tk, Menu, Button, LabelFrame, Entry, Label, DISABLED, ACTIVE
 from tkinter.filedialog import askopenfilename, sys
 from tkinter.messagebox import askyesno, showerror
 
@@ -43,10 +43,8 @@ class MainWindow(Tk):
         filename = askopenfilename(title='Select File',
                                    filetypes=[('Text files', '.txt')])
         self.__experiment.load_data(filename)
-        enable_plot_time_button = self.__plot_time_button
-        enable_plot_time_button.config(state=ACTIVE)
-        enable_plot_frequency_button = self.__plot_frequency_button
-        enable_plot_frequency_button.config(state=ACTIVE)
+        self.__plot_time_button.config(state=ACTIVE)
+        self.__plot_frequency_button.config(state=ACTIVE)
 
     def __plot_time_domain(self):
         start_string = self.__truncate_edit.get()
