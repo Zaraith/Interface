@@ -1,4 +1,4 @@
-from tkinter import Tk, Menu, Button, LabelFrame, Entry, Label
+from tkinter import Tk, Menu, Button, LabelFrame, Entry, Label, DISABLED, NORMAL, ACTIVE
 from tkinter.filedialog import askopenfilename, sys
 from tkinter.messagebox import askyesno, showerror
 
@@ -30,10 +30,10 @@ class MainWindow(Tk):
         self.__truncate_edit.insert(0, '0')
         self.__truncate_edit.bind()
         self.__truncate_edit.grid(column=0, row=1)
-        plot_time_button = Button(label_frame, text='Plot Time Domain', command=self.__plot_time_domain)
-        plot_time_button.grid(column=0, row=3)
-        plot_frequency_button = Button(label_frame, text='Plot Frequency Domain', command=self.__plot_frequency_domain)
-        plot_frequency_button.grid(column=0, row=4)
+        self.__plot_time_button = Button(label_frame, text='Plot Time Domain', state=DISABLED, command=self.__plot_time_domain)
+        self.__plot_time_button.grid(column=0, row=3)
+        self.__plot_frequency_button = Button(label_frame, text='Plot Frequency Domain', state=DISABLED, command=self.__plot_frequency_domain)
+        self.__plot_frequency_button.grid(column=0, row=4)
 
     def __do_filequit(self):
         if askyesno('Quit', 'Are you sure to quit ?'):
@@ -43,6 +43,10 @@ class MainWindow(Tk):
         filename = askopenfilename(title='Select File',
                                    filetypes=[('Text files', '.txt')])
         self.__experiment.load_data(filename)
+        enable_plot_time_button = self.__plot_time_button
+        enable_plot_time_button.config(state=ACTIVE)
+        enable_plot_frequency_button = self.__plot_frequency_button
+        enable_plot_frequency_button.config(state=ACTIVE)
 
     def __plot_time_domain(self):
         start_string = self.__truncate_edit.get()
