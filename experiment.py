@@ -34,4 +34,25 @@ class Experiment:
         half = int(len(x_f) / 2)
         plt.plot(numpy.abs(x_f[1:half]))
         # plt.plot(numpy.abs(x_f))
+
+        plt.subplot(2, 2, 1)
+        plt.plot(numpy.abs(x_f[1:half]))
+        plt.title('Amplitude')
+        plt.grid(True)
+
+        plt.subplot(2, 2, 2)
+        plt.plot(numpy.abs(x_f[1:half]))
+        plt.title('Phase')
+        plt.grid(True)
+
+        plt.subplot(2, 2, 3)
+        plt.plot(numpy.abs(x_f[1:half]))
+        plt.title('Real')
+        plt.grid(True)
+
+        plt.subplot(2, 2, 4)
+        plt.plot(numpy.abs(x_f[1:half]))
+        plt.title('Imaginary')
+        plt.grid(True)
+
         plt.show()
