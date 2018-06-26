@@ -1,4 +1,4 @@
-from tkinter import Tk, Menu, Button, ttk, Entry, Label, DISABLED, ACTIVE
+from tkinter import Tk, Menu, Button, Entry, Label, DISABLED, ACTIVE, LabelFrame, Y, X
 from tkinter.filedialog import askopenfilename, sys
 from tkinter.messagebox import askyesno, showerror
 
@@ -22,22 +22,22 @@ class MainWindow(Tk):
         self.config(menu=menubar)
 
     def __create_widgets(self):
-        label_frame = ttk.LabelFrame(self, text='File Name')
-        label_frame.pack(fill='y', expand='no')
-        label = Label(label_frame, text='Your File :')
-        label.pack()
-        label_frame = ttk.LabelFrame(self, text='X Curve')
-        label_frame.pack(fill='y', expand='no', pady=60)
-        label = Label(label_frame, text='Enter a number to truncate beginning of signal')
-        label.pack()
-        self.__truncate_edit = Entry(label_frame, background='white')
+        file_label_frame = LabelFrame(self, text='File Name')
+        file_label_frame.pack()
+        self.__filename_label = Label(file_label_frame, text='<no file>')
+        self.__filename_label.pack()
+        x_label_frame = LabelFrame(self, text='X Curve')
+        x_label_frame.pack(expand=False, fill=Y, pady=60)
+        truncate_label = Label(x_label_frame, text='Enter a number to truncate beginning of signal')
+        truncate_label.pack(expand=True, fill=X)
+        self.__truncate_edit = Entry(x_label_frame, background='white')
         self.__truncate_edit.insert(0, '0')
         self.__truncate_edit.bind()
-        self.__truncate_edit.pack()
-        self.__plot_time_button = Button(label_frame, text='Plot Time Domain', state=DISABLED, command=self.__plot_time_domain)
-        self.__plot_time_button.pack()
-        self.__plot_frequency_button = Button(label_frame, text='Plot Frequency Domain', state=DISABLED, command=self.__plot_frequency_domain)
-        self.__plot_frequency_button.pack()
+        self.__truncate_edit.pack(expand=True, fill=X)
+        self.__plot_time_button = Button(x_label_frame, text='Plot Time Domain', state=DISABLED, command=self.__plot_time_domain)
+        self.__plot_time_button.pack(expand=True, fill=X)
+        self.__plot_frequency_button = Button(x_label_frame, text='Plot Frequency Domain', state=DISABLED, command=self.__plot_frequency_domain)
+        self.__plot_frequency_button.pack(expand=True, fill=X)
 
     def __do_filequit(self):
         if askyesno('Quit', 'Are you sure to quit ?'):
@@ -47,6 +47,7 @@ class MainWindow(Tk):
         filename = askopenfilename(title='Select File',
                                    filetypes=[('Text files', '.txt')])
         self.__experiment.load_data(filename)
+        self.__filename_label.config(text=filename)
         self.__plot_time_button.config(state=ACTIVE)
         self.__plot_frequency_button.config(state=ACTIVE)
 
