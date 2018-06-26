@@ -1,4 +1,4 @@
-from tkinter import Tk, Menu, Button, LabelFrame, Entry, Label, DISABLED, ACTIVE
+from tkinter import Tk, Menu, Button, ttk, Entry, Label, DISABLED, ACTIVE
 from tkinter.filedialog import askopenfilename, sys
 from tkinter.messagebox import askyesno, showerror
 
@@ -22,10 +22,11 @@ class MainWindow(Tk):
         self.config(menu=menubar)
 
     def __create_widgets(self):
-        label_frame_file = LabelFrame(self, text='File Name :')
-        label_frame_file.place(x=15, y=600)
-        label_frame = LabelFrame(self, text='X Curve', padx=30, pady=30)
-        label_frame.place(x=15, y=200)
+        label_frame = ttk.LabelFrame(self, text='File Name')
+        label_frame.pack(fill='y', expand='no')
+
+        label_frame = ttk.LabelFrame(self, text='X Curve')
+        label_frame.pack(fill='y', expand='no', pady=60)
         label = Label(label_frame, text='Enter a number to truncate beginning of signal')
         label.grid(column=0, row=0)
         self.__truncate_edit = Entry(label_frame, background='white')
