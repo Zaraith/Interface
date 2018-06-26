@@ -24,19 +24,20 @@ class MainWindow(Tk):
     def __create_widgets(self):
         label_frame = ttk.LabelFrame(self, text='File Name')
         label_frame.pack(fill='y', expand='no')
-
+        label = Label(label_frame, text='Your File :')
+        label.pack()
         label_frame = ttk.LabelFrame(self, text='X Curve')
         label_frame.pack(fill='y', expand='no', pady=60)
         label = Label(label_frame, text='Enter a number to truncate beginning of signal')
-        label.grid(column=0, row=0)
+        label.pack()
         self.__truncate_edit = Entry(label_frame, background='white')
         self.__truncate_edit.insert(0, '0')
         self.__truncate_edit.bind()
-        self.__truncate_edit.grid(column=0, row=1)
+        self.__truncate_edit.pack()
         self.__plot_time_button = Button(label_frame, text='Plot Time Domain', state=DISABLED, command=self.__plot_time_domain)
-        self.__plot_time_button.grid(column=0, row=3)
+        self.__plot_time_button.pack()
         self.__plot_frequency_button = Button(label_frame, text='Plot Frequency Domain', state=DISABLED, command=self.__plot_frequency_domain)
-        self.__plot_frequency_button.grid(column=0, row=4)
+        self.__plot_frequency_button.pack()
 
     def __do_filequit(self):
         if askyesno('Quit', 'Are you sure to quit ?'):
