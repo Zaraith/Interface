@@ -1,16 +1,22 @@
-from tkinter import Tk, ttk, Label
+from matplotlib import pyplot
+import numpy
 
-fenetre = Tk()
+x_pts = []
+y_pts = []
 
-l = ttk.LabelFrame(fenetre, text="File Name")
-l.pack(fill="y", expand="no")
- 
-Label(l, text="A l'intérieure de la frame").pack()
+fig, ax = pyplot.subplots()
 
-l = ttk.LabelFrame(fenetre, text="Titre de la frame")
-l.pack(fill="y", expand="no", pady=60)
- 
-Label(l, text="A l'intérieure de la frame").pack()
+line, = ax.plot(x_pts, y_pts, marker="o")
 
-fenetre.mainloop()
+def onpick(event):
+    m_x, m_y = event.x, event.y
+    x, y = ax.transData.inverted().transform([m_x, m_y])
+    x_pts.append(x)
+    y_pts.append(y)
+    line.set_xdata(x_pts)
+    line.set_ydata(y_pts)
+    fig.canvas.draw()
 
+fig.canvas.mpl_connect('button_press_event', onpick)
+
+pyplot.show()
