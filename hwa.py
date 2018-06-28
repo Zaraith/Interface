@@ -1,4 +1,4 @@
-from tkinter import Tk, Menu, Button, Entry, Label, DISABLED, ACTIVE, LabelFrame, Y, X
+from tkinter import Tk, Menu, Button, Spinbox, Label, DISABLED, ACTIVE, LabelFrame, Y, X
 from tkinter.filedialog import askopenfilename, sys
 from tkinter.messagebox import askyesno, showerror
 
@@ -24,13 +24,14 @@ class MainWindow(Tk):
     def __create_widgets(self):
         file_label_frame = LabelFrame(self, text='File Name')
         file_label_frame.pack()
-        self.__filename_label = Label(file_label_frame, text='<no file>')
+        self.__filename_label = Label(file_label_frame, text='<No File>')
         self.__filename_label.pack()
         x_label_frame = LabelFrame(self, text='X Curve')
         x_label_frame.pack(expand=False, fill=Y, pady=60)
         truncate_label = Label(x_label_frame, text='Enter a number to truncate beginning of signal')
         truncate_label.pack(expand=True, fill=X)
-        self.__truncate_edit = Entry(x_label_frame, background='white')
+        maxima = self.__experiment.plot_x(maxi)
+        self.__truncate_edit = Spinbox(x_label_frame, from_=0, to=maxima)
         self.__truncate_edit.insert(0, '0')
         self.__truncate_edit.bind()
         self.__truncate_edit.pack(expand=True, fill=X)

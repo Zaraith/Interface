@@ -27,6 +27,7 @@ class Experiment:
     def plot_x(self, start):
         x = self.__x[start:-1]
         plt.plot(x)
+        maxi = print(x.max())
         plt.show()
 
     def plot_x_f(self):
@@ -42,12 +43,12 @@ class Experiment:
         plt.plot(numpy.angle(x_f[1:half]))
         plt.title('Phase')
         plt.grid(True)
-
+        
         plt.subplot(2, 2, 3)
         plt.plot(numpy.real(x_f[1:half]))
         plt.title('Real')
         plt.grid(True)
-
+        
         plt.subplot(2, 2, 4)
         plt.plot(numpy.imag(x_f[1:half]))
         plt.title('Imaginary')
