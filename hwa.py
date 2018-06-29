@@ -30,8 +30,7 @@ class MainWindow(Tk):
         x_label_frame.pack(expand=False, fill=Y, pady=60)
         truncate_label = Label(x_label_frame, text='Enter a number to truncate beginning of signal')
         truncate_label.pack(expand=True, fill=X)
-        maxima = self.__experiment.plot_x(maxi)
-        self.__truncate_edit = Spinbox(x_label_frame, from_=0, to=maxima)
+        self.__truncate_edit = Spinbox(x_label_frame, from_=0, to=0)
         self.__truncate_edit.insert(0, '0')
         self.__truncate_edit.bind()
         self.__truncate_edit.pack(expand=True, fill=X)
@@ -48,6 +47,8 @@ class MainWindow(Tk):
         filename = askopenfilename(title='Select File',
                                    filetypes=[('Text files', '.txt')])
         self.__experiment.load_data(filename)
+        number = len(self.__experiment.x())
+        self.__truncate_edit.config(to=number)
         self.__filename_label.config(text=filename)
         self.__plot_time_button.config(state=ACTIVE)
         self.__plot_frequency_button.config(state=ACTIVE)
