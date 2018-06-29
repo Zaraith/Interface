@@ -27,7 +27,6 @@ class Experiment:
     def plot_x(self, start):
         x = self.__x[start:-1]
         plt.plot(x)
-        maxi = print(x.max())
         plt.show()
 
     def plot_x_f(self):
