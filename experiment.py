@@ -26,7 +26,8 @@ class Experiment:
 
     def plot_x(self, start):
         x = self.__x[start:-1]
-        plt.plot(x)
+        marker_on = [12, 17, 18, 19]
+        plt.plot(x, '-gD', markevery=marker_on)
         plt.show()
 
     def plot_x_f(self):
